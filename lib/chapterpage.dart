@@ -21,7 +21,7 @@ class _QuestionPageState extends State<QuestionPage> {
         ),
 //          backgroundColor: Color(0xFFE62A6E),
         backgroundColor: Color(0xFF18214C),
-        elevation: 0.0,
+        elevation: 50.0,
         actions: <Widget>[
 
         ],
