@@ -13,8 +13,9 @@ class _QuestionPageState extends State<QuestionPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text(
-          'QUESTIONS',
+          'NUMBERS',
           style: TextStyle(
             color: Colors.grey[200],
           ),
@@ -49,88 +50,91 @@ class _QuestionPageState extends State<QuestionPage> {
           Container(
             height: MediaQuery.of(context).size.height-308,
             color: Color(0xFFEFF0F4),
-            child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                itemCount: questions.length,
-                itemBuilder: (BuildContext context, int index) {
-                  Question question = questions[index];
-                  return Padding(
-                    padding: EdgeInsets.only(left: 15, top: 20, right: 15),
-                    child: FlatButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => QuestionDedicated()),
-                        );
-                      },
-                      textColor: Color(0xFF18214C),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      color: Colors.white,
-                      padding: EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 20.0),
-                      splashColor: Colors.grey,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 15),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Column(
-                              //mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    question.questiontitle,
-                                    style: TextStyle(
-                                      fontSize: 18.0,
-                                      letterSpacing: 0.5,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 20, left: 15, right: 15),
+              child: ListView.builder(
+                  scrollDirection: Axis.vertical,
+                  itemCount: questions.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    Question question = questions[index];
+                    return Padding(
+                      padding: EdgeInsets.only(bottom: 20),
+                      child: FlatButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => QuestionDedicated()),
+                          );
+                        },
+                        textColor: Color(0xFF18214C),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        color: Colors.white,
+                        padding: EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 20.0),
+                        splashColor: Colors.grey,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 15),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Column(
+                                //mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(
+                                      question.questiontitle,
+                                      style: TextStyle(
+                                        fontSize: 18.0,
+                                        letterSpacing: 0.5,
+                                      ),
                                     ),
-                                  ),
-                                  SizedBox(height: 6),
-                                  Text(
-                                    'Difficulty: '+question.questiondifficulty,
-                                    style: TextStyle(
-                                      fontSize: 13.0,
-                                      fontStyle: FontStyle.italic,
-                                      color: Colors.grey,
-                                    ),
-                                  ),
-                                  SizedBox(height: 6),
-                                  Row(
-                                    children: <Widget>[
-                                      Icon(
-                                        Icons.access_time,
-                                        size: 15,
+                                    SizedBox(height: 6),
+                                    Text(
+                                      'Difficulty: '+question.questiondifficulty,
+                                      style: TextStyle(
+                                        fontSize: 13.0,
+                                        fontStyle: FontStyle.italic,
                                         color: Colors.grey,
                                       ),
-                                      SizedBox(width: 6),
-                                      Text(
-                                        '02 : 08',
-                                        style:
-                                        TextStyle(
-                                          fontSize: 12,
+                                    ),
+                                    SizedBox(height: 6),
+                                    Row(
+                                      children: <Widget>[
+                                        Icon(
+                                          Icons.access_time,
+                                          size: 15,
                                           color: Colors.grey,
                                         ),
-                                      )
-                                    ],
-                                  ),
+                                        SizedBox(width: 6),
+                                        Text(
+                                          '02 : 08',
+                                          style:
+                                          TextStyle(
+                                            fontSize: 12,
+                                            color: Colors.grey,
+                                          ),
+                                        )
+                                      ],
+                                    ),
 
-                                ]
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 15.0),
-                              child: Image.asset(
-                                'assets/icons/tick_1.png',
-                                width: 30,
-                                height: 30,
+                                  ]
                               ),
-                            ),
-                          ],
+                              Padding(
+                                padding: const EdgeInsets.only(right: 15.0),
+                                child: Image.asset(
+                                  'assets/icons/tick_1.png',
+                                  width: 30,
+                                  height: 30,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                }
+                    );
+                  }
+              ),
             ),
           ),
         ],

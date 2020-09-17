@@ -22,7 +22,8 @@ class _LineChartSample2State extends State<LineChartSample2> {
     return Stack(
       children: <Widget>[
         Container(
-          width: 370,
+          // width: 370,
+          width: double.infinity,
           height: 220,
           decoration: const BoxDecoration(
 //              borderRadius: BorderRadius.all(
@@ -207,9 +208,19 @@ class _LineChartSample2State extends State<LineChartSample2> {
       lineBarsData: [
         LineChartBarData(
           spots: GlobalVariables.questionslist.map((i){
-            counter+=1;
-            print(i[6]);
-            return FlSpot(counter.toDouble()-1, i[6]);
+            print(counter);
+            var prevX=0.0;
+            var prevY=0.0;
+            //if(counter<=_maxX){
+              counter+=1;
+              print(i[6]);
+              prevX=counter.toDouble()-1;
+              prevY=i[6];
+              return FlSpot(counter.toDouble()-1, i[6]);
+            /*}
+            else{
+              return FlSpot(prevX,prevY);
+            }*/
           }).toList(),
           /*spots: [
             FlSpot(0, 3),

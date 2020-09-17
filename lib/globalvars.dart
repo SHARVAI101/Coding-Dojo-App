@@ -17,7 +17,7 @@ class GlobalVariables {
     ["JONIN", "Slitting throats without losing the ninjato's edge; cutting through the enemy's lines like a falcon's egg in a crow's nest; the people are awed by the disciple's presence.", "assets/rank_icons/8.png", 1601, 1800],
     ["NINJA", "Unwavering as a rock against sleet and armed to the teeth with a myriad of weapons, the crane is now a wolf.", "assets/rank_icons/9.png", 1801, 2000],
     ["MASTER NINJA", "The disciple is now a teacher; a legend in its own right; the cherry blossoms grow; as if to welcome.", "assets/rank_icons/10.png", 2001, 2200],
-    ["NINJA SENPAI", "The disciple, now a ninja's success is as clear as Mount Fugi's peak on a summer afternoon. Time for some sake.", "assets/rank_icons/11.png", 2201, 2400],
+    ["NINJA SENSEI", "The disciple, now a ninja's success is as clear as Mount Fugi's peak on a summer afternoon. Time for some sake.", "assets/rank_icons/11.png", 2201, 2400],
     ["SAMURAI", "Like the cold breeze in the air and the eagle in the sky, the ninja watches and annihilates any code that might stand between it and its legend.", "assets/rank_icons/12.png", 2401, 2600],
     ["SAMURAI DAIMYO", "Blossom in the wind; settles on the scabbard of its blade; the disciple has now become the master.", "assets/rank_icons/13.png", 2601, 2800],
     ["SHOGUN", "Birds harken a dawn of a new age. A powerful lord rises through the ranks. Like a fresh breath of air, a new shogun has arrived.", "assets/rank_icons/14.png", 2801, 3000],
@@ -25,10 +25,12 @@ class GlobalVariables {
   ];
 
   // questionslist- 0:Chapter name, 1:question title, 2:question, 3:difficulty, 4:image path, 5:completion status(0 means not completed; 1 means completed), 6:time in seconds
-  static var questionslist=[['STRINGS', 'VOWELS - I', 'Given a string, find the number of vowels and consonants present in it.', 'EASY', 'null', 1, 350.0],
-    ['STRINGS', 'STRING FUNCTIONS - I', 'Hard code a string "Sharvai likes mangoes" and: a. Find the character at the 5th position and display it b. Convert the string to uppercase and display it c. Find the length of the string and display it. d. Find the index of the letter m', 'EASY', 'null', 1, 480.0],
-    ['STRINGS', 'VOWELS - I', 'Given a string, find the number of vowels and consonants present in it.', 'EASY', 'null', 1, 350.0],
-    ['STRINGS', 'VOWELS - I', 'Given a string, find the number of vowels and consonants present in it.', 'EASY', 'null', 1, 350.0],
-    ['STRINGS', 'VOWELS - I', 'Given a string, find the number of vowels and consonants present in it.', 'EASY', 'null', 1, 350.0],
+  // solution pdf for every question is: assets/solutions/questionid.pdf
+  // questionids start from 0 (array index is question id)
+  static var questionslist=[['STRINGS', 'VOWELS - I', 'Given a string, find the number of vowels and consonants present in it.', 'EASY', 'null', 0, 0.0],
+    ['STRINGS', 'STRING FUNCTIONS - I', 'Hard code a string "Sharvai likes mangoes" and: a. Find the character at the 5th position and display it b. Convert the string to uppercase and display it c. Find the length of the string and display it. d. Find the index of the letter m', 'EASY', 'null', 0, 0.0],
+    ['STRINGS', 'VOWELS - I', 'Given a string, find the number of vowels and consonants present in it.', 'EASY', 'null', 0, 0.0],
+    ['STRINGS', 'VOWELS - I', 'Given a string, find the number of vowels and consonants present in it.', 'EASY', 'null', 0, 0.0],
+    ['STRINGS', 'VOWELS - I', 'Given a string, find the number of vowels and consonants present in it.', 'EASY', 'null', 0, 0.0],
   ];
 }
