@@ -28,13 +28,17 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
       print("isRunning");
       startTimer();
     }
-    
+
+    if(this.mounted){
       setState((){
         secondstaken+=1;
-        timetodisplay=swatch.elapsed.inHours.toString().padLeft(2,"0")+":"
-            + (swatch.elapsed.inMinutes%60).toString().padLeft(2,"0")+":"
+        print("secondstaken="+secondstaken.toString());
+        timetodisplay=swatch.elapsed.inHours.toString().padLeft(2,"0")+" : "
+            + (swatch.elapsed.inMinutes%60).toString().padLeft(2,"0")+" : "
             + (swatch.elapsed.inSeconds%60).toString().padLeft(2,"0");
       });
+    }
+
   }
 
   @override
@@ -240,6 +244,7 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
                       ),
                       onPressed: (){
                         print("stophi");
+                        swatch.stop();
                       },
                     ),
                     SizedBox(width: 15,),
@@ -252,6 +257,12 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
                       ),
                       onPressed: (){
                         print("rehi");
+                        swatch.reset();
+                        setState(() {
+                          timetodisplay="00 : 00 : 00";
+                          secondstaken=0.0;
+                        });
+
                       },
                     ),
                   ],
