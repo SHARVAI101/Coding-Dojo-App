@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 60,
+        //toolbarHeight: 60,
         title: Align(
           alignment: Alignment.bottomCenter,
           child: Text('THE CODING DOJO',

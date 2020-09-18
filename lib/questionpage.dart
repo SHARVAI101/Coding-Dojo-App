@@ -283,6 +283,7 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
                     }
                     print("new points -> "+GlobalVariables.points.toString());
                     print("new rank -> "+GlobalVariables.rank.toString());
+                    GlobalVariables.questionslist[0][6]=secondstaken;
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => RankUp()),
