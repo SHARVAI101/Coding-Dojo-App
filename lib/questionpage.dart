@@ -1,7 +1,10 @@
+import 'dart:async';
 import 'package:coding_dojo_app/globalvars.dart';
 import 'package:coding_dojo_app/rankuppage.dart';
 import 'package:coding_dojo_app/solutionpage.dart';
 import 'package:flutter/material.dart';
+
+
 
 class QuestionDedicated extends StatefulWidget {
   @override
@@ -9,6 +12,31 @@ class QuestionDedicated extends StatefulWidget {
 }
 
 class _QuestionDedicatedState extends State<QuestionDedicated> {
+
+  var swatch=Stopwatch();
+  String timetodisplay="00 : 00 : 00";
+  final dur=const Duration(seconds: 1);
+  double secondstaken=0.0;
+
+  void startTimer(){
+    print("startTimer");
+    Timer(dur, keeprunning);
+  }
+
+  void keeprunning(){
+    if(swatch.isRunning){
+      print("isRunning");
+      startTimer();
+    }
+    
+      setState((){
+        secondstaken+=1;
+        timetodisplay=swatch.elapsed.inHours.toString().padLeft(2,"0")+":"
+            + (swatch.elapsed.inMinutes%60).toString().padLeft(2,"0")+":"
+            + (swatch.elapsed.inSeconds%60).toString().padLeft(2,"0");
+      });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -178,32 +206,53 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
           Column(
             children: <Widget>[
               Text(
-                '00 : 00 : 00',
+                timetodisplay,
                 style: TextStyle(
                   fontSize: 52,
                   color: Color(0xFF18214C),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(90.0, 15, 20, 0),
+                padding: const EdgeInsets.fromLTRB(20, 15, 20, 0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Image.asset(
-                      'assets/icons/play.png',
-                      height: 45,
-                      width: 45,
+                    IconButton(
+                      iconSize: 45,
+                      icon: Image.asset(
+                        'assets/icons/play.png',
+                        height: 60,
+                        width: 60,
+                      ),
+                      onPressed: (){
+                        print("hi");
+                        swatch.start();
+                        startTimer();
+                      },
                     ),
                     SizedBox(width: 15,),
-                    Image.asset(
-                      'assets/icons/stop.png',
-                      height: 45,
-                      width: 45,
+                    IconButton(
+                      iconSize: 45,
+                      icon: Image.asset(
+                        'assets/icons/stop.png',
+                        height: 60,
+                        width: 60,
+                      ),
+                      onPressed: (){
+                        print("stophi");
+                      },
                     ),
                     SizedBox(width: 15,),
-                    Image.asset(
-                      'assets/icons/replay.png',
-                      height: 45,
-                      width: 45,
+                    IconButton(
+                      iconSize: 45,
+                      icon: Image.asset(
+                        'assets/icons/replay.png',
+                        height: 60,
+                        width: 60,
+                      ),
+                      onPressed: (){
+                        print("rehi");
+                      },
                     ),
                   ],
                 ),
