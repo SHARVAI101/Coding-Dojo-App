@@ -14,6 +14,32 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  double _percent=0.0;
+  String _percentString="0%";
+
+  @override
+  void initState() {
+    super.initState();
+
+    int _questionsCompleted = 0;
+    int _total_questions = GlobalVariables.questionslist.length;
+    for(int i=0; i < GlobalVariables.questionslist.length; i++)
+    {
+      if (GlobalVariables.questionslist[i][5] == 1)
+      {
+        _total_questions++;
+      }
+    }
+    print(_total_questions);
+    setState(() {
+      _percent = (_questionsCompleted / _total_questions);
+      _percent=double.parse(_percent.toStringAsFixed(2));
+      print(_percent);
+      _percentString=(_percent*100).toInt().toString()+"%";
+      print(_percentString);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,7 +112,7 @@ class _HomePageState extends State<HomePage> {
                                   child: Align(
                                     alignment: Alignment.bottomCenter,
                                     child: Text(
-                                      'WHITE BELT',
+                                      GlobalVariables.rankslist[GlobalVariables.rank][0],
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         fontSize: 18,
@@ -119,9 +145,9 @@ class _HomePageState extends State<HomePage> {
                             radius: 105.0,
                             lineWidth: 8.0,
                             animation: true,
-                            percent: 0.7,
+                            percent: _percent,
                             center: new Text(
-                              "70%",
+                              _percentString,
                               style: new TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20.0,
