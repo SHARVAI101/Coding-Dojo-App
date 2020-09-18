@@ -25,42 +25,47 @@ class _RankUpState extends State<RankUp> {
 
   void startTimer(var _limit) {
     print("here"+counter.toString());
-    if(mounted){
+
       //this if statement checks that this rankup widget (scaffold) has not been closed because you cant set the state of a widget that is closed(aka disposed)
-      new Timer.periodic(
-        Duration(microseconds: 1),
-            (Timer timer) => setState(
-              () {
+      new Timer.periodic(Duration(seconds: 1),(Timer timer) {
+        if(this.mounted) {
+          setState(() {
             if (_progress >= _limit) {
               timer.cancel();
               print("returning");
-              counter+=1;
+              counter += 1;
               //now we check if there is a rank up (counter set kela so that parat parat haa function call nako hoyla because fakta ekdach rank up hou shakto at a time)
-              if(widget._points>widget._upperlimit && counter<2 && GlobalVariables.rank!=15){
+              if (widget._points > widget._upperlimit && counter < 2 &&
+                  GlobalVariables.rank != 15) {
                 //mhanje rank up zhala ani rank 15 nasel tarach loading wala kar nahitar nahi
                 print("in");
-                print("difference:"+(widget._points-GlobalVariables.rankslist[widget._rank+1][3]).toString());
-                print(GlobalVariables.rankslist[widget._rank+1][3].toString());
-                var _limit2=(widget._points-GlobalVariables.rankslist[widget._rank+1][3])/200;
+                print("difference:" + (widget._points -
+                    GlobalVariables.rankslist[widget._rank + 1][3]).toString());
+                print(
+                    GlobalVariables.rankslist[widget._rank + 1][3].toString());
+                var _limit2 = (widget._points -
+                    GlobalVariables.rankslist[widget._rank + 1][3]) / 200;
                 print(_limit2);
-                setState(() {
-                  _progress=0;
-                  // setting all global variables
-                  widget._rank+=1;
-                  GlobalVariables.oldrank+=1;
-                });
+                if (this.mounted) {
+                  setState(() {
+                    _progress = 0;
+                    // setting all global variables
+                    widget._rank += 1;
+                    GlobalVariables.oldrank += 1;
+                  });
+                }
                 startTimer(_limit2);
               }
               // return;
 
             } else {
-              _progress += 0.0001;
+              _progress += 0.01;
             }
-          },
-        ),
-      );
+          });//set state
+        }
+      });
     }
-  }
+
 
   void handleProgressBar() {
     var _limit=(widget._points-widget._lowerlimit)/200;
