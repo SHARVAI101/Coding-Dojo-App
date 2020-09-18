@@ -163,7 +163,7 @@ class _RankUpState extends State<RankUp> {
                   SizedBox(height:20),
                   LinearProgressIndicator(
                     value: _progress,
-                    minHeight: 10,
+                    //minHeight: 10,
                     valueColor: AlwaysStoppedAnimation<Color>(Colors.pink[600]),
                     backgroundColor: Color(0xFFCCCCCC),
                   ),

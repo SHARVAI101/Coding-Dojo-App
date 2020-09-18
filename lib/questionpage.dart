@@ -79,15 +79,15 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
                     Expanded(
                       child: Row(
                         children: <Widget>[
-                          Image.asset(
+                          /*Image.asset(
                             'assets/icons/question.png',
                             height: 50,
                             width: 50,
                           ),
-                          SizedBox(width: 15),
+                          SizedBox(width: 15),*/
                           Expanded(
                             child: Text(
-                              'Write a program to find the vowels in the string.',
+                              "Question : "+GlobalVariables.questionslist[68][2],
                               style: TextStyle(
                                 color: Colors.grey[600],
                                 fontSize: 22,

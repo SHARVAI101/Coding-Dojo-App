@@ -32,13 +32,23 @@ class _SolutionState extends State<Solution> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFE62A6E),
+        backgroundColor: Color(0xFF18214C),
         title: Text(
           "Solution"
         ),
+        leading: IconButton(
+          onPressed: (){
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.grey[200],
+            size: 20,
+          ),
+        ),
       ),
       body: Container(
-        color: Colors.blueGrey,
+        color: Colors.white,
         child: PdfView(
           documentLoader: Center(child: CircularProgressIndicator()),
           pageLoader: Center(child: CircularProgressIndicator()),
