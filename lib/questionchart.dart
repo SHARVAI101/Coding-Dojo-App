@@ -4,6 +4,9 @@ import 'package:fl_chart/fl_chart.dart';
 
 
 class LineChartSample2 extends StatefulWidget {
+  String chap_name;
+  LineChartSample2({Key key, this.chap_name}): super(key: key);
+
   @override
   _LineChartSample2State createState() => _LineChartSample2State();
 }
@@ -36,7 +39,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
             padding: const EdgeInsets.only(
                 right: 18.0, left: 12.0, top: 24, bottom: 12),
             child: LineChart(
-              mainData(),
+              mainData(widget.chap_name),
             ),
           ),
         ),
@@ -60,20 +63,33 @@ class _LineChartSample2State extends State<LineChartSample2> {
     );
   }
 
-  LineChartData mainData() {
+  LineChartData mainData(String chap_name) {
     var counter=0;
+    var qlist=[];//a list that stores all info for this particular chapter
+    print(chap_name);
+    int k=0;
+    for(int i=0;i< GlobalVariables.questionslist.length;i++){
+      if(GlobalVariables.questionslist[i][0]==chap_name){
+        qlist.add(GlobalVariables.questionslist[i]);
+        // qlist[k].add(i);
+        print(GlobalVariables.questionslist[i]);
+        print(qlist);
+        // k++;
+      }
+    }
+
     double _maxY=0;
-    for(var i=0;i<GlobalVariables.questionslist.length;i++) {
-      if( _maxY < GlobalVariables.questionslist[i][6]){
-        _maxY=GlobalVariables.questionslist[i][6];
+    for(var i=0;i<qlist.length;i++) {
+      if( _maxY < qlist[i][6]){
+        _maxY=qlist[i][6];
       }
     }
     _maxY+=100;
     print("maxY="+_maxY.toString());
 
     int _maxX=0;
-    for(var i=0;i<GlobalVariables.questionslist.length;i++) {
-      if( GlobalVariables.questionslist[i][5]==1){
+    for(var i=0;i<qlist.length;i++) {
+      if( qlist[i][5]==1){
         //mhanje question cha completion status 1 astil tar titke questions dakhavle zaatil
         _maxX=i+1;
       }
@@ -106,7 +122,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
           textStyle:
           const TextStyle(color: Color(0xff68737d),
               fontWeight: FontWeight.bold,
-              fontSize: 10),
+              fontSize: 8.5),
           getTitles: (value) {
             switch (value.toInt()) {
               case 0:
@@ -207,13 +223,13 @@ class _LineChartSample2State extends State<LineChartSample2> {
       maxY: _maxY,
       lineBarsData: [
         LineChartBarData(
-          spots: GlobalVariables.questionslist.map((i){
-            print(counter);
+          spots: qlist.map((i){
+            //print(counter);
             var prevX=0.0;
             var prevY=0.0;
             //if(counter<=_maxX){
               counter+=1;
-              print(i[6]);
+              //print(i[6]);
               prevX=counter.toDouble()-1;
               prevY=i[6];
               return FlSpot(counter.toDouble()-1, i[6]);

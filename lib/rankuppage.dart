@@ -59,7 +59,7 @@ class _RankUpState extends State<RankUp> {
               // return;
 
             } else {
-              _progress += 0.01;
+              _progress += 0.1;
             }
           });//set state
         }

@@ -1,21 +1,44 @@
+import 'package:coding_dojo_app/globalvars.dart';
 import 'package:coding_dojo_app/models/question_model.dart';
 import 'package:coding_dojo_app/questionchart.dart';
 import 'package:coding_dojo_app/questionpage.dart';
 import 'package:flutter/material.dart';
 
 class QuestionPage extends StatefulWidget {
+  String chap_name;
+  QuestionPage({Key key, this.chap_name}): super(key: key);
+
   @override
   _QuestionPageState createState() => _QuestionPageState();
 }
 
 class _QuestionPageState extends State<QuestionPage> {
+   var qlist=[];
+
+  @override
+  void initState() {
+    super.initState();
+
+    int k=0;
+    for(int i=0;i< GlobalVariables.questionslist.length;i++){
+      if(GlobalVariables.questionslist[i][0]==widget.chap_name){
+        print("gblv before-"+GlobalVariables.questionslist[i].toString());
+        qlist.add(GlobalVariables.questionslist[i]);
+        qlist[k].add(i);
+        print("gblv-"+GlobalVariables.questionslist[i].toString());
+        print(qlist);
+        k++;
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          'NUMBERS',
+          widget.chap_name,
           style: TextStyle(
             color: Colors.grey[200],
           ),
@@ -44,7 +67,7 @@ class _QuestionPageState extends State<QuestionPage> {
 //              height: 200.0,
 //              width: 350.0,
             //color: Colors.black,
-            child: LineChartSample2(),
+            child: LineChartSample2(chap_name: widget.chap_name,),
           ),
           // SizedBox(height: 8),
           Container(
@@ -52,18 +75,16 @@ class _QuestionPageState extends State<QuestionPage> {
             color: Color(0xFFEFF0F4),
             child: Padding(
               padding: const EdgeInsets.only(top: 20, left: 15, right: 15),
-              child: ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  itemCount: questions.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    Question question = questions[index];
+              child: ListView(
+                scrollDirection: Axis.vertical,
+                children: qlist.map((i){
                     return Padding(
                       padding: EdgeInsets.only(bottom: 20),
                       child: FlatButton(
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => QuestionDedicated()),
+                            MaterialPageRoute(builder: (context) => QuestionDedicated(q_id: i[7])),
                           );
                         },
                         textColor: Color(0xFF18214C),
@@ -83,7 +104,7 @@ class _QuestionPageState extends State<QuestionPage> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     Text(
-                                      question.questiontitle,
+                                      i[1],
                                       style: TextStyle(
                                         fontSize: 18.0,
                                         letterSpacing: 0.5,
@@ -91,7 +112,7 @@ class _QuestionPageState extends State<QuestionPage> {
                                     ),
                                     SizedBox(height: 6),
                                     Text(
-                                      'Difficulty: '+question.questiondifficulty,
+                                      'Difficulty: '+i[3],
                                       style: TextStyle(
                                         fontSize: 13.0,
                                         fontStyle: FontStyle.italic,
@@ -108,7 +129,7 @@ class _QuestionPageState extends State<QuestionPage> {
                                         ),
                                         SizedBox(width: 6),
                                         Text(
-                                          '02 : 08',
+                                          i[6].toString(),
                                           style:
                                           TextStyle(
                                             fontSize: 12,
@@ -122,8 +143,12 @@ class _QuestionPageState extends State<QuestionPage> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(right: 15.0),
-                                child: Image.asset(
+                                child: ( i[5] == 1 ) ? Image.asset(
                                   'assets/icons/tick_1.png',
+                                  width: 30,
+                                  height: 30,
+                                ):Image.asset(
+                                  'assets/icons/incomplete.png',
                                   width: 30,
                                   height: 30,
                                 ),
@@ -133,7 +158,8 @@ class _QuestionPageState extends State<QuestionPage> {
                         ),
                       ),
                     );
-                  }
+
+                  }).toList(),
               ),
             ),
           ),
