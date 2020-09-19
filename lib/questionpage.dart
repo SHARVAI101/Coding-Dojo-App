@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 
 
 class QuestionDedicated extends StatefulWidget {
+  int q_id;
+  QuestionDedicated({Key key, this.q_id}): super(key: key);
   @override
   _QuestionDedicatedState createState() => _QuestionDedicatedState();
 }
@@ -42,12 +44,18 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    print(widget.q_id);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          'VOWELS I',
+          GlobalVariables.questionslist[widget.q_id][1],
           style: TextStyle(
             color: Colors.grey[200],
           ),
@@ -87,7 +95,7 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
                           SizedBox(width: 15),*/
                           Expanded(
                             child: Text(
-                              "Question : "+GlobalVariables.questionslist[68][2],
+                              "Question : "+GlobalVariables.questionslist[widget.q_id][2],
                               style: TextStyle(
                                 color: Colors.grey[600],
                                 fontSize: 22,
@@ -104,10 +112,10 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Image.asset(
-                      'assets/images/52.jpg',
+                    (GlobalVariables.questionslist[widget.q_id][4] != "null")? Image.asset(
+                      GlobalVariables.questionslist[widget.q_id][4],
                       width: 200,
-                    )
+                    ):Container()
                   ],
                 ),
                 SizedBox(height: 40),
@@ -141,10 +149,15 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
                               ),
                             ),
                             SizedBox(height: 16),
+                            (GlobalVariables.questionslist[widget.q_id][5] == 1)?
                             Image.asset(
+                              'assets/icons/tick_1.png',
+                              width: 30,
+                              height: 30,
+                            ):Image.asset(
                               'assets/icons/incomplete.png',
-                              height: 25,
-                              width: 25,
+                              width: 30,
+                              height: 30,
                             ),
                           ],
                         ),
@@ -190,7 +203,8 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
                             ),
                             SizedBox(height: 8),
                             Text(
-                              '00 : 00 : 00',
+                              //'00 : 00 : 00',
+                              GlobalVariables.questionslist[widget.q_id][6].toString(),
                               style: TextStyle(
                                 color: Colors.black87,
                                 fontSize: 18,
@@ -283,6 +297,11 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
                     }
                     print("new points -> "+GlobalVariables.points.toString());
                     print("new rank -> "+GlobalVariables.rank.toString());
+                    setState(() {
+                      GlobalVariables.questionslist[widget.q_id][5]=1;
+                      GlobalVariables.questionslist[widget.q_id][6]=secondstaken;
+                    });
+
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => RankUp()),
