@@ -298,7 +298,7 @@ class _HomePageState extends State<HomePage> {
                                               ),
                                               SizedBox(height: 6),
                                               Text(
-                                                '5 Questions',
+                                                chapter.noofquestions.toString()+' Questions',
                                                 style: TextStyle(
                                                   fontSize: 15.0,
                                                   color: Colors.grey,

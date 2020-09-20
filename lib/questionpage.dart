@@ -47,6 +47,18 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
   void initState() {
     super.initState();
     print(widget.q_id);
+
+    /*if(GlobalVariables.questionslist[widget.q_id][5]==1){
+      //if question is completed
+      double sec=GlobalVariables.questionslist[widget.q_id][6];
+      String twoDigits(int n) => n.toString().padLeft(2, "0");
+      int mins=(sec%60).toInt();
+      String minutes=twoDigits(mins);
+      int hrs=(sec%60).toInt();
+      String hours=twoDigits(hrs);
+      String seconds=twoDigits(sec.toInt());
+    }*/
+
   }
 
   @override
@@ -322,6 +334,11 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
                   ),
                   color: Colors.green,
                 ),
+              ),
+              SizedBox(height:20),
+              Text(
+                "The solution given doesnot handle every single error case that is for you to figure out. Here, we only present essential functionality.",
+
               ),
               SizedBox(height: 100,)
             ],
