@@ -32,6 +32,16 @@ class _AllRanksState extends State<AllRanks> {
                   fontSize: 30
                 ),
               ),
+              leading: IconButton(
+                onPressed: (){
+                  Navigator.pop(context);
+                },
+                icon: Icon(
+                  Icons.arrow_back_ios,
+                  color: Colors.grey[200],
+                  size: 20,
+                ),
+              ),
             ),
             // backgroundColor:Colors.transparent,
             body: Padding(

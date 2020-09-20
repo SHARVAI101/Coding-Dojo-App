@@ -1,4 +1,5 @@
 import 'package:coding_dojo_app/homepage.dart';
+import 'package:coding_dojo_app/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: OnBoardingPage(),
     );
   }
 }

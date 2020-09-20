@@ -1,6 +1,7 @@
 import 'package:coding_dojo_app/allrankspage.dart';
 import 'package:coding_dojo_app/chapterpage.dart';
 import 'package:coding_dojo_app/globalvars.dart';
+import 'package:coding_dojo_app/homepage_rank.dart';
 import 'package:coding_dojo_app/models/chapter_model.dart';
 import 'package:coding_dojo_app/rankuppage.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,7 +28,7 @@ class _HomePageState extends State<HomePage> {
     {
       if (GlobalVariables.questionslist[i][5] == 1)
       {
-        _total_questions++;
+        _questionsCompleted++;
       }
     }
     print(_total_questions);
@@ -40,42 +41,68 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  double calcpercent(){
+    int _questionsCompleted = 0;
+    int _total_questions = GlobalVariables.questionslist.length;
+    for(int i=0; i < GlobalVariables.questionslist.length; i++)
+    {
+      if (GlobalVariables.questionslist[i][5] == 1)
+      {
+        _questionsCompleted++;
+      }
+    }
+    print(_total_questions);
+    _percent = (_questionsCompleted / _total_questions);
+    _percent=double.parse(_percent.toStringAsFixed(2));
+    print(_percent);
+    _percentString=(_percent*100).toInt().toString()+"%";
+    print(_percentString);
+    double per=_percent;
+    return per;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        //toolbarHeight: 60,
-        title: Align(
-          alignment: Alignment.bottomCenter,
-          child: Text('THE CODING DOJO',
-            style: GoogleFonts.overpass
-              (
-              textStyle: TextStyle(
-                fontSize: 30,
-                color: Color(0xFFEFF0F4),
-              )
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60.0),
+        child: AppBar(
+          //toolbarHeight: 60,
+          title: Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 33.0),
+              child: Text('THE CODING DOJO',
+                style: GoogleFonts.overpass
+                  (
+                  textStyle: TextStyle(
+                    fontSize: 30,
+                    color: Color(0xFFEFF0F4),
+                  )
+                ),
+                /*style: TextStyle(
+                  fontSize: 30,
+                  color: Color(0xFFEFF0F4),
+                ),*/
+              ),
             ),
-            /*style: TextStyle(
-              fontSize: 30,
-              color: Color(0xFFEFF0F4),
-            ),*/
           ),
-        ),
 //          backgroundColor: Color(0xFFE62A6E),
 //            backgroundColor: Colors.white,
-        backgroundColor: Color(0xFF18214C),
-        elevation: 0.0,
-        /*leading: Icon(
-          Icons.dehaze,
-          color: Color(0xFFEFF0F4),
-        ),*/
+          backgroundColor: Color(0xFF18214C),
+          elevation: 0.0,
+          /*leading: Icon(
+            Icons.dehaze,
+            color: Color(0xFFEFF0F4),
+          ),*/
+        ),
       ),
       body: Column(
           children: <Widget>[
             Container(
               color: Color(0xFF18214C),
               height: 205.0,
-              width: 360.0,
+              width: double.infinity,
               child: Padding(
                   padding: const EdgeInsets.fromLTRB(35, 25.0, 35, 0),
                   child: Row(
@@ -95,10 +122,18 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                             child: Center(
-                              child: Image.asset(
-                                GlobalVariables.rankslist[GlobalVariables.rank][2],
-                                width: 80,
-                                fit: BoxFit.cover,
+                              child: FlatButton(
+                                child: Image.asset(
+                                  GlobalVariables.rankslist[GlobalVariables.rank][2],
+                                  width: 80,
+                                  fit: BoxFit.cover,
+                                ),
+                                onPressed: (){
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => HomePageRank()),
+                                  );
+                                },
                               ),
                             ),
                           ),
@@ -145,7 +180,7 @@ class _HomePageState extends State<HomePage> {
                             radius: 105.0,
                             lineWidth: 8.0,
                             animation: true,
-                            percent: _percent,
+                            percent: calcpercent(),
                             center: new Text(
                               _percentString,
                               style: new TextStyle(
@@ -241,7 +276,14 @@ class _HomePageState extends State<HomePage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(builder: (context) => QuestionPage(chap_name: chapter.chaptername,)),
-                                );
+                                ).then((value) {
+                                  setState(() {
+
+                                  });
+                                });
+                                /*setState(() {
+
+                                });*/
                               },
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10.0),

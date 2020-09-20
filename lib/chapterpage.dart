@@ -85,7 +85,11 @@ class _QuestionPageState extends State<QuestionPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) => QuestionDedicated(q_id: i[7])),
-                          );
+                          ).then((value) {
+                            setState(() {
+
+                            });
+                          });
                         },
                         textColor: Color(0xFF18214C),
                         shape: RoundedRectangleBorder(

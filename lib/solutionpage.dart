@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:native_pdf_view/native_pdf_view.dart';
 
 class Solution extends StatefulWidget {
+  int q_id;
+  Solution({Key key, this.q_id}): super(key: key);
   @override
   _SolutionState createState() => _SolutionState();
 }
@@ -17,9 +19,10 @@ class _SolutionState extends State<Solution> {
   @override
   void initState() {
     _pdfController = PdfController(
-      document: PdfDocument.openAsset('assets/solutions/0.pdf'),
+      document: PdfDocument.openAsset('assets/solutions/'+widget.q_id.toString()+'.pdf'),
     );
     super.initState();
+    print("q_id="+widget.q_id.toString());
   }
 
   @override
@@ -49,21 +52,40 @@ class _SolutionState extends State<Solution> {
       ),
       body: Container(
         color: Colors.white,
-        child: PdfView(
-          documentLoader: Center(child: CircularProgressIndicator()),
-          pageLoader: Center(child: CircularProgressIndicator()),
-          controller: _pdfController,
-          onDocumentLoaded: (document) {
-            setState(() {
-              _actualPageNumber = 1;
-              _allPagesCount = document.pagesCount;
-            });
-          },
-          onPageChanged: (page) {
-            setState(() {
-              _actualPageNumber = page;
-            });
-          },
+        child: Column(
+          children: <Widget>[
+            SizedBox(height: 10,),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Text(
+                "Note: The solution given doesnot handle every single error case that is for you to figure out. Here, we only present essential functionality.",
+                style: TextStyle(
+                  fontSize: 18,
+                  letterSpacing: 0.8,
+                ),
+              ),
+            ),
+            SizedBox(
+              height:MediaQuery.of(context).size.height-250,
+              width: double.infinity,
+              child: PdfView(
+                documentLoader: Center(child: CircularProgressIndicator()),
+                pageLoader: Center(child: CircularProgressIndicator()),
+                controller: _pdfController,
+                onDocumentLoaded: (document) {
+                  setState(() {
+                    _actualPageNumber = 1;
+                    _allPagesCount = document.pagesCount;
+                  });
+                },
+                onPageChanged: (page) {
+                  setState(() {
+                    _actualPageNumber = page;
+                  });
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );

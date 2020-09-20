@@ -43,11 +43,23 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
 
   }
 
+  bool _isStartEnabled = true;
+  bool _isStopEnabled = false;
+  bool _isSubmitEnabled = false;
+  bool _isResetEnabled = false;
+
+  bool _isSubmitted = false;
+
   @override
   void initState() {
     super.initState();
     print(widget.q_id);
 
+    if(GlobalVariables.questionslist[widget.q_id][5]==1){
+      setState(() {
+        _isSubmitted = true;
+      });
+    }
     /*if(GlobalVariables.questionslist[widget.q_id][5]==1){
       //if question is completed
       double sec=GlobalVariables.questionslist[widget.q_id][6];
@@ -233,7 +245,7 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
             ),
           ),
           SizedBox(height: 20),
-          Column(
+          _isSubmitted ? Container() : Column(
             children: <Widget>[
               Text(
                 timetodisplay,
@@ -250,7 +262,7 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
                     IconButton(
                       iconSize: 45,
                       icon: Image.asset(
-                        'assets/icons/play.png',
+                        _isStartEnabled ? 'assets/icons/play.png' : 'assets/icons/play_disabled.png',
                         height: 60,
                         width: 60,
                       ),
@@ -258,26 +270,38 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
                         print("hi");
                         swatch.start();
                         startTimer();
+                        setState(() {
+                          _isStopEnabled = true;
+                          _isStartEnabled = false;
+                          _isResetEnabled = false;
+                          _isSubmitEnabled = false;
+                        });
                       },
                     ),
                     SizedBox(width: 15,),
                     IconButton(
                       iconSize: 45,
                       icon: Image.asset(
-                        'assets/icons/stop.png',
+                        _isStopEnabled ? 'assets/icons/stop.png' : 'assets/icons/stop_disabled.png',
                         height: 60,
                         width: 60,
                       ),
-                      onPressed: (){
+                      onPressed: _isStopEnabled ? (){
                         print("stophi");
                         swatch.stop();
-                      },
+                        setState(() {
+                          _isStopEnabled = false;
+                          _isStartEnabled = true;
+                          _isSubmitEnabled = true;
+                          _isResetEnabled = true;
+                        });
+                      } : null,
                     ),
                     SizedBox(width: 15,),
                     IconButton(
                       iconSize: 45,
                       icon: Image.asset(
-                        'assets/icons/replay.png',
+                        _isResetEnabled ? 'assets/icons/replay.png' : 'assets/icons/replay_disabled.png',
                         height: 60,
                         width: 60,
                       ),
@@ -287,6 +311,10 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
                         setState(() {
                           timetodisplay="00 : 00 : 00";
                           secondstaken=0.0;
+                          _isStartEnabled = true;
+                          _isStopEnabled = false;
+                          _isSubmitEnabled = false;
+                          _isResetEnabled = false;
                         });
 
                       },
@@ -299,7 +327,7 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
                 height: 45,
                 width: 130,
                 child: FlatButton(
-                  onPressed: (){
+                  onPressed: _isSubmitEnabled ? (){
                     print("rank -> "+GlobalVariables.rank.toString());
                     print("old rank-> "+GlobalVariables.oldrank.toString());
                     GlobalVariables.oldrank=GlobalVariables.rank;
@@ -319,7 +347,7 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
                       context,
                       MaterialPageRoute(builder: (context) => RankUp()),
                     );
-                  },
+                  } : (){},
                   child: Text(''
                       'Submit',
                     style: TextStyle(
@@ -332,13 +360,8 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
                     borderRadius: BorderRadius.circular(20.0),
 
                   ),
-                  color: Colors.green,
+                  color: _isSubmitEnabled ? Colors.green : Color(0xFFD8D8D8),
                 ),
-              ),
-              SizedBox(height:20),
-              Text(
-                "The solution given doesnot handle every single error case that is for you to figure out. Here, we only present essential functionality.",
-
               ),
               SizedBox(height: 100,)
             ],
@@ -350,7 +373,7 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
           // Add your onPressed code here!
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => Solution()),
+            MaterialPageRoute(builder: (context) => Solution(q_id: widget.q_id)),
           );
         },
         label: Text(
