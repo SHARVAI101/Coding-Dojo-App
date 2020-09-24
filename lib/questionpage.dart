@@ -50,14 +50,27 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
 
   bool _isSubmitted = false;
 
+  String timetakenifsolved="~";
+
   @override
   void initState() {
     super.initState();
-    print(widget.q_id);
+    //print(widget.q_id);
 
     if(GlobalVariables.questionslist[widget.q_id][5]==1){
       setState(() {
         _isSubmitted = true;
+
+        //converting time taken to hours:mins:sec format
+        //print(int.parse(double.parse(GlobalVariables.questionslist[widget.q_id][6].toString()).round().toString()));
+        int x=int.parse(double.parse(GlobalVariables.questionslist[widget.q_id][6].toString()).round().toString());//list chya double time la string madhe karun double madhe karun round karun string karun int kela bc
+        //int x=9464;
+        int hours=(x/3600).floor();
+        int mins=(x/60).floor()-(hours * 60);
+        int sec=x%60;
+        timetakenifsolved=hours.toString().padLeft(2,"0")+" : "
+            + mins.toString().padLeft(2,"0")+" : "
+            + sec.toString().padLeft(2,"0");
       });
     }
     /*if(GlobalVariables.questionslist[widget.q_id][5]==1){
@@ -231,7 +244,7 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
                             SizedBox(height: 8),
                             Text(
                               //'00 : 00 : 00',
-                              GlobalVariables.questionslist[widget.q_id][6].toString(),
+                              timetakenifsolved,
                               style: TextStyle(
                                 color: Colors.black87,
                                 fontSize: 18,
@@ -335,7 +348,7 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
                     print("old rank-> "+GlobalVariables.oldrank.toString());
                     GlobalVariables.oldrank=GlobalVariables.rank;
 
-                    print(GlobalVariables.questionslist[widget.q_id][3]);
+                    //print(GlobalVariables.questionslist[widget.q_id][3]);
                     if(GlobalVariables.questionslist[widget.q_id][3]=='EASY')
                       GlobalVariables.points+=25;
                     else if(GlobalVariables.questionslist[widget.q_id][3]=='MODERATE')
@@ -357,6 +370,16 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
                       GlobalVariables.questionslist[widget.q_id][5]=1;
                       GlobalVariables.questionslist[widget.q_id][6]=secondstaken-1;
                       _isSubmitted=true;
+
+                      //setting time taken to hrs:mins:Sec
+                      int x=int.parse(double.parse(GlobalVariables.questionslist[widget.q_id][6].toString()).round().toString());//list chya double time la string madhe karun double madhe karun round karun string karun int kela bc
+                      //int x=9464;
+                      int hours=(x/3600).floor();
+                      int mins=(x/60).floor()-(hours * 60);
+                      int sec=x%60;
+                      timetakenifsolved=hours.toString().padLeft(2,"0")+" : "
+                          + mins.toString().padLeft(2,"0")+" : "
+                          + sec.toString().padLeft(2,"0");
                     });
 
                     Navigator.push(

@@ -72,8 +72,8 @@ class _LineChartSample2State extends State<LineChartSample2> {
       if(GlobalVariables.questionslist[i][0]==chap_name){
         qlist.add(GlobalVariables.questionslist[i]);
         // qlist[k].add(i);
-        print(GlobalVariables.questionslist[i]);
-        print(qlist);
+        //print(GlobalVariables.questionslist[i]);
+        //print(qlist);
         // k++;
       }
     }
