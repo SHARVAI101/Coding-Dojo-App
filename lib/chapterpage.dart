@@ -22,11 +22,11 @@ class _QuestionPageState extends State<QuestionPage> {
     int k=0;
     for(int i=0;i< GlobalVariables.questionslist.length;i++){
       if(GlobalVariables.questionslist[i][0]==widget.chap_name){
-        print("gblv before-"+GlobalVariables.questionslist[i].toString());
+        //print("gblv before-"+GlobalVariables.questionslist[i].toString());
         qlist.add(GlobalVariables.questionslist[i]);
         qlist[k].add(i);
-        print("gblv-"+GlobalVariables.questionslist[i].toString());
-        print(qlist);
+        //print("gblv-"+GlobalVariables.questionslist[i].toString());
+        //print(qlist);
         k++;
       }
     }

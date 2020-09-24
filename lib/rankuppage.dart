@@ -27,7 +27,7 @@ class _RankUpState extends State<RankUp> {
     print("here"+counter.toString());
 
       //this if statement checks that this rankup widget (scaffold) has not been closed because you cant set the state of a widget that is closed(aka disposed)
-      new Timer.periodic(Duration(seconds: 1),(Timer timer) {
+      new Timer.periodic(Duration(milliseconds: 10),(Timer timer) {
         if(this.mounted) {
           setState(() {
             if (_progress >= _limit) {
@@ -59,7 +59,7 @@ class _RankUpState extends State<RankUp> {
               // return;
 
             } else {
-              _progress += 0.1;
+              _progress += 0.005;
             }
           });//set state
         }

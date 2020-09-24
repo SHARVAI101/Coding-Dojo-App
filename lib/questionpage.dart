@@ -3,7 +3,7 @@ import 'package:coding_dojo_app/globalvars.dart';
 import 'package:coding_dojo_app/rankuppage.dart';
 import 'package:coding_dojo_app/solutionpage.dart';
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 
 
 class QuestionDedicated extends StatefulWidget {
@@ -116,15 +116,18 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
                             height: 50,
                             width: 50,
                           ),
+
                           SizedBox(width: 15),*/
                           Expanded(
                             child: Text(
                               "Question : "+GlobalVariables.questionslist[widget.q_id][2],
-                              style: TextStyle(
-                                color: Colors.grey[600],
-                                fontSize: 22,
-                                letterSpacing: 0.5,
-                              ),
+                              style: GoogleFonts.openSans(
+                                textStyle: TextStyle(
+                                  color: Colors.grey[600],
+                                  fontSize: 20,
+                                  letterSpacing: 0.5,
+                                ),
+                              )
                             ),
                           ),
                         ],
@@ -142,7 +145,7 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
                     ):Container()
                   ],
                 ),
-                SizedBox(height: 40),
+                SizedBox(height: 10),
                 Row(
                   children: <Widget>[
                     Container(
@@ -266,7 +269,7 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
                         height: 60,
                         width: 60,
                       ),
-                      onPressed: (){
+                      onPressed: _isStartEnabled ? (){
                         print("hi");
                         swatch.start();
                         startTimer();
@@ -276,7 +279,7 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
                           _isResetEnabled = false;
                           _isSubmitEnabled = false;
                         });
-                      },
+                      } : null,
                     ),
                     SizedBox(width: 15,),
                     IconButton(
@@ -331,7 +334,19 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
                     print("rank -> "+GlobalVariables.rank.toString());
                     print("old rank-> "+GlobalVariables.oldrank.toString());
                     GlobalVariables.oldrank=GlobalVariables.rank;
-                    GlobalVariables.points+=25;
+
+                    print(GlobalVariables.questionslist[widget.q_id][3]);
+                    if(GlobalVariables.questionslist[widget.q_id][3]=='EASY')
+                      GlobalVariables.points+=25;
+                    else if(GlobalVariables.questionslist[widget.q_id][3]=='MODERATE')
+                      GlobalVariables.points+=50;
+                    else if(GlobalVariables.questionslist[widget.q_id][3]=='ADVANCED')
+                      GlobalVariables.points+=75;
+                    else if(GlobalVariables.questionslist[widget.q_id][3]=='VERY ADVANCED')
+                      GlobalVariables.points+=100;
+                    else if(GlobalVariables.questionslist[widget.q_id][3]=='LEGENDARY')
+                      GlobalVariables.points+=125;
+
                     if(GlobalVariables.points>GlobalVariables.rankslist[GlobalVariables.rank][4]){
                       GlobalVariables.rank+=1;
                     }
@@ -341,6 +356,7 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
                     setState(() {
                       GlobalVariables.questionslist[widget.q_id][5]=1;
                       GlobalVariables.questionslist[widget.q_id][6]=secondstaken-1;
+                      _isSubmitted=true;
                     });
 
                     Navigator.push(
