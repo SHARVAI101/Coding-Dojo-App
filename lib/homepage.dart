@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -273,14 +274,19 @@ class _HomePageState extends State<HomePage> {
                           children: <Widget>[
                             FlatButton(
                               onPressed: () {
-                                Navigator.push(
+                                Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, child: QuestionPage(chap_name: chapter.chaptername,))).then((value) {
+                                  setState(() {
+
+                                  });
+                                });
+                                /*Navigator.push(
                                   context,
                                   MaterialPageRoute(builder: (context) => QuestionPage(chap_name: chapter.chaptername,)),
                                 ).then((value) {
                                   setState(() {
 
                                   });
-                                });
+                                });*/
                                 /*setState(() {
 
                                 });*/
