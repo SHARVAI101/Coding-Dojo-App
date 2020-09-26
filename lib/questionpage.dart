@@ -134,7 +134,7 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
                           Expanded(
                             child: Text(
                               "Question : "+GlobalVariables.questionslist[widget.q_id][2],
-                              style: GoogleFonts.openSans(
+                              style: GoogleFonts.roboto(
                                 textStyle: TextStyle(
                                   color: Colors.grey[600],
                                   fontSize: 20,

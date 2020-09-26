@@ -11,13 +11,13 @@ class OnBoardingPage extends StatefulWidget {
 class _OnBoardingPageState extends State<OnBoardingPage> {
   final pages = [
     SkOnboardingModel(
-        title: 'Welcome to CODING DOJO!',
-        description:'The Sanctuary to build your Coding Logic',
+        title: 'WELCOME',
+        description:'The Coding Dojo is a Sanctuary to build your Coding Logic',
         titleColor: Colors.black,
         descripColor: const Color(0xFF929794),
         imagePath: 'assets/images/onboarding1.png'),
     SkOnboardingModel(
-        title: 'START and SOLVE',
+        title: 'START & SOLVE',
         description: 'Start the timer and solve the question on your PC using any coding language',
         titleColor: Colors.black,
         descripColor: const Color(0xFF929794),
