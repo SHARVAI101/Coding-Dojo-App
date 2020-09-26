@@ -34,7 +34,7 @@ class _HomePageRankState extends State<HomePageRank> {
             appBar: AppBar(
               backgroundColor: Colors.transparent,
               actions: [
-                IconButton(
+                /*IconButton(
                   icon: Icon(
                     Icons.share,
                     color: Colors.white,
@@ -42,7 +42,7 @@ class _HomePageRankState extends State<HomePageRank> {
                   onPressed: () {
                     // do something
                   },
-                )
+                )*/
               ],
             ),
             // backgroundColor:Colors.transparent,

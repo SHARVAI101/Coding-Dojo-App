@@ -4,6 +4,7 @@ import 'package:coding_dojo_app/rankuppage.dart';
 import 'package:coding_dojo_app/solutionpage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class QuestionDedicated extends StatefulWidget {
@@ -136,7 +137,7 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
                               "Question : "+GlobalVariables.questionslist[widget.q_id][2],
                               style: GoogleFonts.roboto(
                                 textStyle: TextStyle(
-                                  color: Colors.grey[600],
+                                  color: Colors.grey[800],
                                   fontSize: 20,
                                   letterSpacing: 0.5,
                                 ),
@@ -365,6 +366,27 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
                     }
                     print("new points -> "+GlobalVariables.points.toString());
                     print("new rank -> "+GlobalVariables.rank.toString());
+
+                    Future<void> setprefs()async{
+                      SharedPreferences prefs = await SharedPreferences.getInstance();
+                      await prefs.setInt('points', GlobalVariables.points);
+                      await prefs.setInt('rank', GlobalVariables.rank);
+
+                      List<int> completion_status = List.filled(GlobalVariables.questionslist.length, 0);
+                      for(int i = 0; i < GlobalVariables.questionslist.length; i++){
+                        completion_status[i]=GlobalVariables.questionslist[i][5];
+                      }
+                      List<String> completion_status_string=  completion_status.map((i)=>i.toString()).toList();
+                      await prefs.setStringList('completion_status', completion_status_string);
+
+                      List<double> timetakenlist = List.filled(GlobalVariables.questionslist.length, 0.0);
+                      for(int i = 0; i < GlobalVariables.questionslist.length; i++){
+                        timetakenlist[i]=GlobalVariables.questionslist[i][6];
+                      }
+                      List<String> timetakenlist_string=  timetakenlist.map((i)=>i.toString()).toList();
+                      await prefs.setStringList('timetakenlist', timetakenlist_string);
+                    }
+                    setprefs();
 
                     setState(() {
                       GlobalVariables.questionslist[widget.q_id][5]=1;

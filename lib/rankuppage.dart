@@ -107,7 +107,7 @@ class _RankUpState extends State<RankUp> {
             appBar: AppBar(
               backgroundColor: Colors.transparent,
               actions: [
-                IconButton(
+                /*IconButton(
                   icon: Icon(
                     Icons.share,
                     color: Colors.white,
@@ -115,7 +115,7 @@ class _RankUpState extends State<RankUp> {
                   onPressed: () {
                     // do something
                   },
-                )
+                )*/
               ],
             ),
             // backgroundColor:Colors.transparent,

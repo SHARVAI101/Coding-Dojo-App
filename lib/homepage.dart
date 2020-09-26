@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:coding_dojo_app/allrankspage.dart';
 import 'package:coding_dojo_app/chapterpage.dart';
 import 'package:coding_dojo_app/globalvars.dart';
@@ -9,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -22,6 +25,11 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+
+    // this is done to prevent setState() being called during first widget build
+    new Timer(new Duration(milliseconds: 200), () {
+      getUserInfo();
+    });
 
     int _questionsCompleted = 0;
     int _total_questions = GlobalVariables.questionslist.length;
@@ -60,6 +68,28 @@ class _HomePageState extends State<HomePage> {
     print(_percentString);
     double per=_percent;
     return per;
+  }
+
+  Future<void> getUserInfo() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    GlobalVariables.points=prefs.getInt("points");
+    GlobalVariables.rank=prefs.getInt("rank");
+    print("rank="+prefs.getInt("rank").toString());
+
+    List<String> completion_status_string = (prefs.getStringList('completion_status') ?? List<String>()) ;
+    List<int> completion_status = completion_status_string.map((i)=> int.parse(i)).toList();
+    for(int i = 0; i < GlobalVariables.questionslist.length; i++){
+      GlobalVariables.questionslist[i][5]=completion_status[i];
+    }
+
+    List<String> timetakenlist_string = (prefs.getStringList('timetakenlist') ?? List<String>()) ;
+    List<double> timetakenlist = timetakenlist_string.map((i)=> double.parse(i)).toList();
+    for(int i = 0; i < GlobalVariables.questionslist.length; i++){
+      GlobalVariables.questionslist[i][6]=timetakenlist[i];
+    }
+
+    setState(() {
+    });
   }
 
   @override
@@ -274,19 +304,19 @@ class _HomePageState extends State<HomePage> {
                           children: <Widget>[
                             FlatButton(
                               onPressed: () {
-                                Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, child: QuestionPage(chap_name: chapter.chaptername,))).then((value) {
+                                /*Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, child: QuestionPage(chap_name: chapter.chaptername,))).then((value) {
                                   setState(() {
 
                                   });
-                                });
-                                /*Navigator.push(
+                                });*/
+                                Navigator.push(
                                   context,
                                   MaterialPageRoute(builder: (context) => QuestionPage(chap_name: chapter.chaptername,)),
                                 ).then((value) {
                                   setState(() {
 
                                   });
-                                });*/
+                                });
                                 /*setState(() {
 
                                 });*/

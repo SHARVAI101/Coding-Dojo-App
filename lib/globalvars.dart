@@ -74,7 +74,7 @@ class GlobalVariables {
     ['2-D ARRAYS', 'SUM - I', 'Define a DDA and find the sum of all of its elements.', 'EASY', 'null', 0, 0.0],
     ['2-D ARRAYS', 'MAXIMUM & MINIMUM', 'Define a DDA and find the highest and lowest of all of its elements.', 'EASY', 'null', 0, 0.0],
     ['2-D ARRAYS', 'SUM - II', 'Define a DDA and find the sum of elements in each row and column.', 'EASY', 'null', 0, 0.0],
-    ['2-D ARRAYS', 'DAMN ITS GETTIN HOT IN HERE', 'Define a matrix which has the records for the min and max temperatures for 7 days of a week. Now, take any day of the week as an input and display its min and max temperatures.', 'EASY', 'null', 0, 0.0],
+    ['2-D ARRAYS', 'DAMN ITS GETTIN HOT', 'Define a matrix which has the records for the min and max temperatures for 7 days of a week. Now, take any day of the week as an input and display its min and max temperatures.', 'EASY', 'null', 0, 0.0],
     ['2-D ARRAYS', 'SUM - III', 'Define 2 matrices and carry out matrix addition and store it in a new matrix.', 'MODERATE', 'null', 0, 0.0],
     ['2-D ARRAYS', 'MULTIPLICATION', 'Define 2 matrices and carry out matrix multiplication and store it in a new matrix.', 'ADVANCED', 'null', 0, 0.0],
     ['2-D ARRAYS', 'REGINA\'s HOTEL', 'Define a DDA for all the rooms in Reginas hotel. Now whenever a new customer arrives, assign a hotel room to them. There are 5 floors with 3 rooms on each floor. So, the first customer gets room number 101. The fourth customer gets room number 201.', 'ADVANCED', 'null', 0, 0.0],
