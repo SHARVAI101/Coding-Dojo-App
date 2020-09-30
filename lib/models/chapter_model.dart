@@ -43,4 +43,9 @@ List<Chapter> chapters = [
     chapter_icon:  'assets/icons/oop.png',
     noofquestions: 8,
   ),
+  Chapter(
+    chaptername: 'NUMBERS & OOP',
+    chapter_icon:  'assets/icons/noop.png',
+    noofquestions: 5,
+  ),
 ];

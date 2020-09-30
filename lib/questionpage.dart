@@ -74,6 +74,12 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
             + sec.toString().padLeft(2,"0");
       });
     }
+    else{
+      new Timer(new Duration(milliseconds: 200), ()
+      {
+        _showAlert(context);
+      });
+    }
     /*if(GlobalVariables.questionslist[widget.q_id][5]==1){
       //if question is completed
       double sec=GlobalVariables.questionslist[widget.q_id][6];
@@ -451,6 +457,35 @@ class _QuestionDedicatedState extends State<QuestionDedicated> {
         //backgroundColor: Colors.green,
         backgroundColor: Color(0xFFE62A6E),
       ),
+    );
+  }
+  void _showAlert(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Image.asset(
+                'assets/icons/important_note.png',
+                height: 29,
+                width: 29,
+              ),
+              SizedBox(width: 10,),
+              Text("Important Note!"),
+            ],
+
+          ),
+          content: Text("Please solve this question on your own PC/Laptop and time yourself with the timer provided."),
+            actions: <Widget>[
+              FlatButton(
+                child: Text("Ok"),
+                onPressed: () {
+                Navigator.of(context).pop();
+                },
+              ),
+            ]
+        )
     );
   }
 }
