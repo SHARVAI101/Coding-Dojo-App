@@ -100,7 +100,7 @@ class _Feedback3State extends State<Feedback3> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.fromLTRB(20, 30, 20, 20),
           child: ListView(
             scrollDirection: Axis.vertical,
             children: [
@@ -126,7 +126,7 @@ class _Feedback3State extends State<Feedback3> {
                   )
                 ],
               ),
-
+              SizedBox(height: 20,),
               Text(
                 "1. Enter your feedback",
                 style: TextStyle(
@@ -138,7 +138,9 @@ class _Feedback3State extends State<Feedback3> {
               TextField(
                 maxLines: 10,
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(),
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
                     hintText: 'Tell us literally anything'
                 ),
                 controller: anythingController,

@@ -102,18 +102,18 @@ class _MyAccountState extends State<MyAccount> {
                 style: GoogleFonts.overpass(
                     textStyle: TextStyle(
                       color: Color(0xFFFE8100),
-                      fontSize: 15
+                      fontSize: 16
                     )
                 ),
               ),
             ):Container(),
-            (GlobalVariables.isPremiumUser==false)?SizedBox(height:10):SizedBox(height: 0,),
+            (GlobalVariables.isPremiumUser==false)?SizedBox(height:30):SizedBox(height: 0,),
             (GlobalVariables.isPremiumUser==false)?RaisedButton(
-              color: Colors.white,
+              color: Color(0xFF18214C),
               padding: EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 20.0),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(50.0),
-                  side: BorderSide(color: Colors.red, width: 2)
+//                  side: BorderSide(color: Colors.red, width: 2)
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -128,7 +128,7 @@ class _MyAccountState extends State<MyAccount> {
                     "UNLOCK ALL QUESTIONS",
                     style: GoogleFonts.overpass(
                       textStyle: TextStyle(
-                        color: Color(0xFFFE8100),
+                        color: Colors.white,
                         fontSize: 20
                       )
                     ),

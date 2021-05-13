@@ -162,7 +162,7 @@ class _BottomNavPageState extends State<BottomNavPage> {
           currentIndex: _currentindex,
           unselectedItemColor: Colors.grey,
           // selectedItemColor: Colors.tealAccent[700],
-          selectedItemColor: Color(0xff1289A7),
+          selectedItemColor: Color(0xFF18214C),
           items: [
             BottomNavigationBarItem(
               icon: Icon(

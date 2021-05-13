@@ -48,7 +48,7 @@ class _NewOnboarding1PageState extends State<NewOnboarding1Page> {
                 Column(
                   children: [
                     Align(
-                      alignment: Alignment.bottomCenter,
+                      alignment: Alignment.centerLeft,
                       child: Text(
                         "WELCOME TO THE",
                         style: GoogleFonts.montserrat(
@@ -69,12 +69,12 @@ class _NewOnboarding1PageState extends State<NewOnboarding1Page> {
                       ),
                     ),
                     SizedBox(height:50),
-                    Image(
-                      image: AssetImage(
-                        'assets/icons/katana.png',
-                      ),
-                      width:200,
-                    ),
+//                    Image(
+//                      image: AssetImage(
+//                        'assets/icons/katana.png',
+//                      ),
+//                      width:200,
+//                    ),
                   ],
                 ),
 

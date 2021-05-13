@@ -284,88 +284,106 @@ class _HomePageState extends State<HomePage> {
           ),
 //          backgroundColor: Color(0xFFE62A6E),
 //            backgroundColor: Colors.white,
-          backgroundColor: Color(0xFF18214C),
+//          backgroundColor: Color(0xFF18214C),
+          flexibleSpace: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.topRight,
+                    colors: [Color(0xff302b63), Color(0xff24243e)]),
+              )),
           elevation: 0.0,
-          /*leading: Icon(
-            Icons.dehaze,
-            color: Color(0xFFEFF0F4),
-          ),*/
         ),
       ),
       body: Column(
           children: <Widget>[
             Container(
-              color: Color(0xFF18214C),
               height: 205.0,
               width: double.infinity,
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: <Color>[Color(0xff302b63), Color(0xff24243e)],
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(0)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey[500],
+                      offset: Offset(2.0, 4.5),
+                      blurRadius:3,
+                    ),
+                  ]
+              ),
               child: Padding(
                   padding: const EdgeInsets.fromLTRB(35, 25.0, 35, 0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
-                      Column(
-                        children: <Widget>[
-                          new Container(
-                            width: 110.0,
-                            height: 110.0,
-                            decoration: new BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: new BorderRadius.all(new Radius.circular(65.0)),
-                              border: new Border.all(
-                                color:  Color(0xFFEFF0F4),
-                                width: 4.0,
-                              ),
-                            ),
-                            child: Center(
-                              child: FlatButton(
-                                child: Image.asset(
-                                  GlobalVariables.rankslist[GlobalVariables.rank][2],
-                                  width: 80,
-                                  fit: BoxFit.cover,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: Column(
+                          children: <Widget>[
+                            new Container(
+                              width: 80.0,
+                              height: 80.0,
+                              decoration: new BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: new BorderRadius.all(new Radius.circular(65.0)),
+                                border: new Border.all(
+                                  color:  Color(0xFFEFF0F4),
+                                  width: 4.0,
                                 ),
-                                onPressed: (){
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => HomePageRank()),
-                                  );
-                                },
+                              ),
+                              child: Center(
+                                child: FlatButton(
+                                  child: Image.asset(
+                                    GlobalVariables.rankslist[GlobalVariables.rank][2],
+                                    width: 80,
+                                    fit: BoxFit.cover,
+                                  ),
+                                  onPressed: (){
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => HomePageRank()),
+                                    );
+                                  },
+                                ),
                               ),
                             ),
-                          ),
-                          SizedBox(height: 8),
-                          SizedBox(
-                            width:110,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: Align(
-                                    alignment: Alignment.bottomCenter,
-                                    child: Text(
-                                      GlobalVariables.rankslist[GlobalVariables.rank][0],
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        //fontWeight: FontWeight.bold,
-                                        color: Color(0xFFEFF0F4),
-                                        letterSpacing: 1,
+                            SizedBox(height: 12),
+                            SizedBox(
+                              width:110,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.bottomCenter,
+                                      child: Text(
+                                        GlobalVariables.rankslist[GlobalVariables.rank][0],
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          //fontWeight: FontWeight.bold,
+                                          color: Color(0xFFEFF0F4),
+                                          letterSpacing: 1,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 20.0, right: 20),
+                        padding: const EdgeInsets.only(left: 10.0, right: 20),
                         child: VerticalDivider(
                           color: Color(0xFFEFF0F4),
                           thickness: 2,
                           width: 30,
-                          indent: 20,
-                          endIndent: 60,
+                          indent: 15,
+                          endIndent: 55,
                         ),
                       ),
                       /*Padding(
@@ -414,7 +432,7 @@ class _HomePageState extends State<HomePage> {
                                   GlobalVariables.points.toString(),
                                   style: new TextStyle(
                                     //fontWeight: FontWeight.bold,
-                                    fontSize: 45.0,
+                                    fontSize: 70.0,
                                     color: Color(0xFFEFF0F4),
                                     letterSpacing: 1,
                                   ),
@@ -746,7 +764,7 @@ class _HomePageState extends State<HomePage> {
                               width: 75.0,
                               height: 75.0,
                               decoration: new BoxDecoration(
-                                color: Colors.grey[400],
+                                color: Color(0xFF18214C),
                                 borderRadius: new BorderRadius.all(new Radius.circular(65.0)),
                                 border: new Border.all(
                                   color:  Colors.white,

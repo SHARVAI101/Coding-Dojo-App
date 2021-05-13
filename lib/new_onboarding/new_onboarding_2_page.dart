@@ -107,12 +107,12 @@ class _NewOnboarding2PageState extends State<NewOnboarding2Page> {
                                     ):Container()
                                   ],
                                 ),
-                                SizedBox(height:5),
+                                SizedBox(height:8),
                                 Text(
                                   "You have very little or no coding knowledge.",
                                   style: TextStyle(
                                     // fontFamily: 'FreeSans',
-                                      fontSize: 16,
+                                      fontSize: 15,
                                       color: (_optionSelected!=1)?Colors.grey[300]:Colors.grey[600]
                                   ),
                                 ),
@@ -169,12 +169,12 @@ class _NewOnboarding2PageState extends State<NewOnboarding2Page> {
                                     ):Container()
                                   ],
                                 ),
-                                SizedBox(height:5),
+                                SizedBox(height:8),
                                 Text(
                                   "You have basic coding knowledge and wish to focus on programming logic.",
                                   style: TextStyle(
                                     // fontFamily: 'FreeSans',
-                                      fontSize: 16,
+                                      fontSize: 15,
                                       color: (_optionSelected!=2)?Colors.grey[300]:Colors.grey[600]
                                   ),
                                 ),
@@ -234,7 +234,7 @@ class _NewOnboarding2PageState extends State<NewOnboarding2Page> {
                   elevation: (_optionSelected==0)?0:10,
                   shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
                   color: Colors.white,
-                  textColor: Colors.green,
+                  textColor: Color(0xff8c2b58),
                   child: Text(
                     'CONTINUE',
                     style: GoogleFonts.montserrat(

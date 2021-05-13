@@ -214,17 +214,17 @@ class _LogicGrowthPageState extends State<LogicGrowthPage> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 24.0),
-                      child: Text(
-                        "WELCOME TO THE,",
-                        style: GoogleFonts.montserrat(
-                          // fontFamily: 'FreeSans',
-                            fontSize: 11,
-                            color: Colors.grey[600]
-                        ),
-                      ),
-                    ),
+//                    Padding(
+//                      padding: const EdgeInsets.only(left: 24.0),
+//                      child: Text(
+//                        "WELCOME TO THE,",
+//                        style: GoogleFonts.montserrat(
+//                          // fontFamily: 'FreeSans',
+//                            fontSize: 11,
+//                            color: Colors.grey[600]
+//                        ),
+//                      ),
+//                    ),
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0),
                       child: Text(
@@ -404,7 +404,7 @@ class _LogicGrowthPageState extends State<LogicGrowthPage> {
                 ),
               ],
             ),
-            SizedBox(height: 15),
+            SizedBox(height: 22),
             Flexible(
               child: GestureDetector(
                   onHorizontalDragUpdate: (details) {
@@ -444,7 +444,7 @@ class _LogicGrowthPageState extends State<LogicGrowthPage> {
                         // height: 130.0,
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
-                            colors: <Color>[Color(0xff546de5), Color(0xff778beb)],
+                            colors: <Color>[Color(0xff007991), Color(0xff96c93d)],
                           ),
                           borderRadius: BorderRadius.all(Radius.circular(20)),
                           boxShadow: [
@@ -479,7 +479,7 @@ class _LogicGrowthPageState extends State<LogicGrowthPage> {
                                     style: GoogleFonts.muli(
                                       // fontFamily: 'FreeSans',
                                       fontSize: 26,
-                                      color: Colors.grey[200]
+                                      color: Colors.grey[100]
                                     ),
                                   ),
                                   SizedBox(height:5),
@@ -488,7 +488,7 @@ class _LogicGrowthPageState extends State<LogicGrowthPage> {
                                     style: TextStyle(
                                       // fontFamily: 'FreeSans',
                                         fontSize: 16,
-                                        color: Colors.grey[200]
+                                        color: Colors.grey[100]
                                     ),
                                   ),
                                   SizedBox(height: 15),
@@ -524,7 +524,7 @@ class _LogicGrowthPageState extends State<LogicGrowthPage> {
                         ),
                       ),
                     ):Container(),
-                    (_level==0)?SizedBox(height: 20):Container(),
+                    (_level==0)?SizedBox(height: 22):Container(),
                     (_level==0)?Padding(
                       padding: const EdgeInsets.only(left: 20.0, right: 20),
                       child: Container(
@@ -532,7 +532,7 @@ class _LogicGrowthPageState extends State<LogicGrowthPage> {
                         // height: 130.0,
                         decoration: BoxDecoration(
                             gradient: LinearGradient(
-                              colors: <Color>[Color(0xfffa8231), Color(0xfff7b731)],
+                              colors: <Color>[Color(0xffff9966), Color(0xffff5e62)],
                             ),
                             borderRadius: BorderRadius.all(Radius.circular(20)),
                             boxShadow: [
@@ -566,7 +566,7 @@ class _LogicGrowthPageState extends State<LogicGrowthPage> {
                                       style: GoogleFonts.muli(
                                         // fontFamily: 'FreeSans',
                                           fontSize: 26,
-                                          color: Colors.grey[200]
+                                          color: Colors.grey[100]
                                       ),
                                     ),
                                     SizedBox(height:5),
@@ -575,7 +575,7 @@ class _LogicGrowthPageState extends State<LogicGrowthPage> {
                                       style: TextStyle(
                                         // fontFamily: 'FreeSans',
                                           fontSize: 16,
-                                          color: Colors.grey[200]
+                                          color: Colors.grey[100]
                                       ),
                                     ),
                                     SizedBox(height: 15),
@@ -611,7 +611,7 @@ class _LogicGrowthPageState extends State<LogicGrowthPage> {
                         ),
                       ),
                     ):Container(),
-                    (_level==0)?SizedBox(height: 20):Container(),
+                    (_level==0)?SizedBox(height: 22):Container(),
                     (_level==0)?Padding(
                       padding: const EdgeInsets.only(left: 20.0, right: 20),
                       child: Container(
@@ -619,7 +619,7 @@ class _LogicGrowthPageState extends State<LogicGrowthPage> {
                         // height: 130.0,
                         decoration: BoxDecoration(
                             gradient: LinearGradient(
-                              colors: <Color>[Color(0xff6D214F), Color(0xffB33771)],
+                              colors: <Color>[Color(0xff642B73), Color(0xffC6426E)],
                             ),
                             borderRadius: BorderRadius.all(Radius.circular(20)),
                             boxShadow: [
@@ -653,7 +653,7 @@ class _LogicGrowthPageState extends State<LogicGrowthPage> {
                                       style: GoogleFonts.muli(
                                         // fontFamily: 'FreeSans',
                                           fontSize: 26,
-                                          color: Colors.grey[200]
+                                          color: Colors.grey[100]
                                       ),
                                     ),
                                     SizedBox(height:5),
@@ -662,7 +662,7 @@ class _LogicGrowthPageState extends State<LogicGrowthPage> {
                                       style: TextStyle(
                                         // fontFamily: 'FreeSans',
                                           fontSize: 16,
-                                          color: Colors.grey[200]
+                                          color: Colors.grey[100]
                                       ),
                                     ),
                                     SizedBox(height: 15),
