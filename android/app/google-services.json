@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "531794053962",
+    "project_id": "coding-dojo-9bd63",
+    "storage_bucket": "coding-dojo-9bd63.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:531794053962:android:fe887e1bd873ed76078fb3",
+        "android_client_info": {
+          "package_name": "com.traveltest.coding_dojo_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "531794053962-nf30335e4rppf4oa0v5c3v619cnv60bv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAe9CIhD1Uuinvj_2S2GamP2suJKXlCI5w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "531794053962-nf30335e4rppf4oa0v5c3v619cnv60bv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

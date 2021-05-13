@@ -23,7 +23,7 @@ class _HomePageRankState extends State<HomePageRank> {
     return Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/rankback1.jpg"),
+            image: AssetImage("assets/images/rankback1-min.jpg"),
             fit: BoxFit.cover,
           ),
         ),

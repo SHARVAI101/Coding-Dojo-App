@@ -19,8 +19,14 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         descripColor: const Color(0xFF929794),
         imagePath: 'assets/images/onboarding1.png'),
     SkOnboardingModel(
-        title: 'START & SOLVE',
-        description: 'Start the timer and solve the question on your PC using any coding language',
+        title: 'LOGIC GROWTH',
+        description: 'Tap the given choices and learn programming logic!',
+        titleColor: Colors.black,
+        descripColor: const Color(0xFF929794),
+        imagePath: 'assets/icons/rocket.png'),
+    SkOnboardingModel(
+        title: 'CHAPTERS',
+        description: 'For the more hardcore programmers, checkout the chapters section',
         titleColor: Colors.black,
         descripColor: const Color(0xFF929794),
         imagePath: 'assets/images/onboarding2.png'),
@@ -29,13 +35,13 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         description: 'Solve all the questions to Rank Up from White Belt to Legendary Shogun',
         titleColor: Colors.black,
         descripColor: const Color(0xFF929794),
-        imagePath: 'assets/rank_icons/8.png'),
-    SkOnboardingModel(
-        title: 'ANALYZE',
-        description: 'Track improvements using Intuitive Graphs and Build your Logic today!',
-        titleColor: Colors.black,
-        descripColor: const Color(0xFF929794),
-        imagePath: 'assets/images/onboarding4.png'),
+        imagePath: 'assets/rank_icons/12.png'),
+    // SkOnboardingModel(
+    //     title: 'ANALYZE',
+    //     description: 'Track improvements using Intuitive Graphs and Build your Logic today!',
+    //     titleColor: Colors.black,
+    //     descripColor: const Color(0xFF929794),
+    //     imagePath: 'assets/images/onboarding4.png'),
   ];
 
   @override

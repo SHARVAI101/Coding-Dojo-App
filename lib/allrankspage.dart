@@ -14,7 +14,7 @@ class _AllRanksState extends State<AllRanks> {
     return Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/allranks2.jpg"),
+            image: AssetImage("assets/images/allranks2-min.jpg"),
             fit: BoxFit.cover,
           ),
         ),

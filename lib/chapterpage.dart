@@ -1,8 +1,10 @@
+import 'package:coding_dojo_app/coding_dojo_store.dart';
 import 'package:coding_dojo_app/globalvars.dart';
 import 'package:coding_dojo_app/models/question_model.dart';
 import 'package:coding_dojo_app/questionchart.dart';
 import 'package:coding_dojo_app/questionpage.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class QuestionPage extends StatefulWidget {
   String chap_name;
@@ -36,30 +38,30 @@ class _QuestionPageState extends State<QuestionPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          widget.chap_name,
-          style: TextStyle(
-            color: Colors.grey[200],
-          ),
-        ),
-//          backgroundColor: Color(0xFFE62A6E),
-        backgroundColor: Color(0xFF18214C),
-        elevation: 50.0,
-        actions: <Widget>[
-
-        ],
-        leading: IconButton(
-          onPressed: (){
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            Icons.arrow_back_ios,
-            color: Colors.grey[200],
-            size: 20,
-          ),
+      centerTitle: true,
+      title: Text(
+        widget.chap_name,
+        style: TextStyle(
+          color: Colors.grey[200],
         ),
       ),
+//          backgroundColor: Color(0xFFE62A6E),
+      backgroundColor: Color(0xFF18214C),
+      elevation: 50.0,
+      actions: <Widget>[
+
+      ],
+      leading: IconButton(
+        onPressed: (){
+          Navigator.pop(context);
+        },
+        icon: Icon(
+          Icons.arrow_back_ios,
+          color: Colors.grey[200],
+          size: 20,
+        ),
+      ),
+    ),
 
       body: Column(
         children: <Widget>[
@@ -78,18 +80,61 @@ class _QuestionPageState extends State<QuestionPage> {
               child: ListView(
                 scrollDirection: Axis.vertical,
                 children: qlist.map((i){
+
+
                     return Padding(
                       padding: EdgeInsets.only(bottom: 20),
                       child: FlatButton(
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => QuestionDedicated(q_id: i[7])),
-                          ).then((value) {
-                            setState(() {
+                          if(i[7]==1){
+                            // premium question
 
+                            bool _isPremiumUser=false;
+                            Future<void> checkPremiumMembership() async {
+                              SharedPreferences prefs = await SharedPreferences.getInstance();
+                              print(prefs.getBool('isPremiumUser'));
+                              _isPremiumUser = (prefs.getBool('isPremiumUser') ?? false);
+
+                              if(_isPremiumUser){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => QuestionDedicated(q_id: i[8])),
+                                ).then((value) {
+                                  setState(() {
+
+                                  });
+                                });//was i[7]
+                              }
+                              else{
+                                print("not premium user");
+                                // pop chapter page and redirect to buy membership page (so that the chapter page updates on coming to it after buying premium)
+                                // or add a setstate after refirect
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => CodingDojoStore()),
+                                ).then((value) {
+                                  setState(() {
+
+                                  });
+                                });
+                              }
+
+                            }
+                            checkPremiumMembership();
+
+
+                          }
+                          else{
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => QuestionDedicated(q_id: i[8])),
+                            ).then((value) {
+                              setState(() {
+
+                              });
                             });
-                          });
+                          }
+
                         },
                         textColor: Color(0xFF18214C),
                         shape: RoundedRectangleBorder(
@@ -147,7 +192,9 @@ class _QuestionPageState extends State<QuestionPage> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(right: 15.0),
-                                child: ( i[5] == 1 ) ? Image.asset(
+                                child: (i[7]==1)?(
+                                    (GlobalVariables.isPremiumUser==true)?
+                                    (( i[5] == 1 ) ? Image.asset(
                                   'assets/icons/tick_1.png',
                                   width: 30,
                                   height: 30,
@@ -155,7 +202,21 @@ class _QuestionPageState extends State<QuestionPage> {
                                   'assets/icons/incomplete.png',
                                   width: 30,
                                   height: 30,
-                                ),
+                                )):Image.asset(
+                                      'assets/icons/crown.png',
+                                      width: 30,
+                                      height: 30,
+                                    ))
+                                    :
+                                (( i[5] == 1 ) ? Image.asset(
+                                  'assets/icons/tick_1.png',
+                                  width: 30,
+                                  height: 30,
+                                ):Image.asset(
+                                  'assets/icons/incomplete.png',
+                                  width: 30,
+                                  height: 30,
+                                )),
                               ),
                             ],
                           ),
@@ -171,5 +232,9 @@ class _QuestionPageState extends State<QuestionPage> {
       ),
 
     );
+  }
+
+  Widget questionIcon () {
+
   }
 }

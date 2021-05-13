@@ -34,7 +34,8 @@ class _RankUpState extends State<RankUp> {
               timer.cancel();
               print("returning");
               counter += 1;
-              //now we check if there is a rank up (counter set kela so that parat parat haa function call nako hoyla because fakta ekdach rank up hou shakto at a time)
+              //now we check if there is a rank up (counter set kela so that parat parat haa
+              // function call nako hoyla because fakta ekdach rank up hou shakto at a time)
               if (widget._points > widget._upperlimit && counter < 2 &&
                   GlobalVariables.rank != 15) {
                 //mhanje rank up zhala ani rank 15 nasel tarach loading wala kar nahitar nahi
@@ -96,7 +97,7 @@ class _RankUpState extends State<RankUp> {
     return Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/rankback1.jpg"),
+            image: AssetImage("assets/images/rankback1-min.jpg"),
             fit: BoxFit.cover,
           ),
         ),
