@@ -40,25 +40,30 @@ class _AllChaptersState extends State<AllChapters> {
       body: Container(
         // color: Color(0xFFEFF0F4),
         height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+        gradient: LinearGradient(
+        colors: <Color>[Color(0xff06beb6), Color(0xff48b1bf)],
+        ),
+        ),
         child: Padding(
           padding: EdgeInsets.only(top: 20, left: 0, right: 0,),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 30),
+              SizedBox(height: 50),
               Padding(
                 padding: const EdgeInsets.only(left: 24.0),
                 child: Text(
                   "FOR THE HARDCORE CODERS,",
                   style: GoogleFonts.montserrat(
                     // fontFamily: 'FreeSans',
-                      fontSize: 11,
-                      color: Colors.grey[600]
+                      fontSize: 12,
+                      color: Colors.grey[800]
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 20.0),
+                padding: const EdgeInsets.only(left: 20.0, top: 5),
                 child: Text(
                   "Hardcore Mode",
                   style: GoogleFonts.muli(
@@ -71,7 +76,7 @@ class _AllChaptersState extends State<AllChapters> {
               SizedBox(height: 15,),
               Flexible(
                 child: ListView.builder(
-                  padding: EdgeInsets.all(0),
+                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                     scrollDirection: Axis.vertical,
                     itemCount: chapters.length,
                     itemBuilder: (BuildContext context, int index) {

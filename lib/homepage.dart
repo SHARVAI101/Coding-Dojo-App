@@ -432,7 +432,7 @@ class _HomePageState extends State<HomePage> {
                                   GlobalVariables.points.toString(),
                                   style: new TextStyle(
                                     //fontWeight: FontWeight.bold,
-                                    fontSize: 70.0,
+                                    fontSize: 65.0,
                                     color: Color(0xFFEFF0F4),
                                     letterSpacing: 1,
                                   ),

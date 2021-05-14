@@ -100,35 +100,37 @@ class _Feedback3State extends State<Feedback3> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 30, 20, 20),
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
           child: ListView(
             scrollDirection: Axis.vertical,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Feedback",
-                    style: TextStyle(
-                      fontFamily: 'FreeSans',
-                      fontSize: 30,
-                    ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: IconButton(
+                  onPressed: (){
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(
+                    Icons.clear,
+                    color: Color(0xFF18214C),
                   ),
-                  IconButton(
-                    onPressed: (){
-                      Navigator.pop(context);
-                    },
-                    icon: Icon(
-                      Icons.clear,
-                      color: Colors.red,
-                    ),
-                    iconSize: 29,
-                  )
-                ],
+                  iconSize: 29,
+                ),
+              ),
+              Center(
+                child: Text(
+                  "FEEDBACK",
+                  style: TextStyle(
+                    fontFamily: 'FreeSans',
+                    fontSize: 28,
+                    letterSpacing: 1.0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
               ),
               SizedBox(height: 20,),
               Text(
-                "1. Enter your feedback",
+                "Enter your feedback",
                 style: TextStyle(
                   fontFamily: 'FreeSans',
                   fontSize: 18,
@@ -138,8 +140,9 @@ class _Feedback3State extends State<Feedback3> {
               TextField(
                 maxLines: 10,
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
+                    border: new OutlineInputBorder(
+                        borderSide: new BorderSide(color: Colors.grey[700]),
+                        borderRadius: BorderRadius.circular(10),
                     ),
                     hintText: 'Tell us literally anything'
                 ),
@@ -147,7 +150,7 @@ class _Feedback3State extends State<Feedback3> {
               ),
               SizedBox(height: 20),
               Text(
-                "2. If you would like a follow up, enter your email. (optional)",
+                "If you would like a follow up, enter your email. (optional)",
                 style: TextStyle(
                   fontFamily: 'FreeSans',
                   fontSize: 18,
@@ -156,13 +159,16 @@ class _Feedback3State extends State<Feedback3> {
               SizedBox(height:10),
               TextField(
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(),
+                    border: new OutlineInputBorder(
+                      borderSide: new BorderSide(color: Colors.grey[700]),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                     hintText: 'Email address'
                 ),
                 controller: emailController,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20, top: 30),
+                padding: const EdgeInsets.only(left: 0, right: 0, top: 30),
                 child: RaisedButton(
                     onPressed: (){
                       // Future<void> saveData() async{

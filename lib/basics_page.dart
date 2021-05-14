@@ -243,190 +243,198 @@ class _BasicsPageState extends State<BasicsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.fromLTRB(20,20,20,0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 20),
-            SizedBox(
-              width: 100,
-              child: FlatButton(
-                padding: EdgeInsets.all(0),
-                onPressed: (){
-                  Navigator.pop(context);
-                },
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top:2),
-                      child: Icon(
-                        Icons.chevron_left,
-                        color: Colors.grey[600].withOpacity(0.8)
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              colors: <Color>[Color(0xff96c93d), Color(0xff007991)],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter),
+        ),
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(20,20,20,0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 20),
+              SizedBox(
+                width: 100,
+                child: FlatButton(
+                  padding: EdgeInsets.all(0),
+                  onPressed: (){
+                    Navigator.pop(context);
+                  },
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top:2),
+                        child: Icon(
+                          Icons.chevron_left,
+                          color: Colors.grey[700].withOpacity(0.8)
+                        ),
                       ),
-                    ),
-                    Text(
-                      "HOME",
-                      style: GoogleFonts.montserrat(
-                        // fontFamily: 'FreeSans',
-                        fontSize: 15,
-                        color: Colors.grey[600].withOpacity(0.8)
+                      Text(
+                        "HOME",
+                        style: GoogleFonts.montserrat(
+                          // fontFamily: 'FreeSans',
+                          fontSize: 15,
+                          color: Colors.grey[700].withOpacity(0.8)
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(height:0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Basics",
-                  style: GoogleFonts.muli(
-                    // fontFamily: 'FreeSans',
-                      fontSize: 33,
-                      color: Colors.grey[800]
+                    ],
                   ),
                 ),
-                SizedBox(
-                  height: 40,
-                  child: RaisedButton(
-                    onPressed: () async {
-                      SharedPreferences prefs = await SharedPreferences.getInstance();
-                      await prefs.setBool('lgTutorialSeen', true);
-                      // prefs.remove("lgTutorialSeen");
-                      _showDialog();
-                    },
-                    color: Color(0xFF18214C),
-                    textColor: Colors.grey[200],
-                    shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
-                    child: Text(
-                      "Tutorial",
-                      style: GoogleFonts.montserrat(
+              ),
+              SizedBox(height:0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Basics",
+                    style: GoogleFonts.muli(
+                      // fontFamily: 'FreeSans',
+                        fontSize: 33,
+                        color: Colors.grey[800]
+                    ),
+                  ),
+                  SizedBox(
+                    height: 40,
+                    child: RaisedButton(
+                      onPressed: () async {
+                        SharedPreferences prefs = await SharedPreferences.getInstance();
+                        await prefs.setBool('lgTutorialSeen', true);
+                        // prefs.remove("lgTutorialSeen");
+                        _showDialog();
+                      },
+                      color: Color(0xFF18214C),
+                      textColor: Colors.grey[200],
+                      shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
+                      child: Text(
+                        "Tutorial",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 15,
+                        )
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              SizedBox(height: 25),
+              Flexible(
+                child: ListView(
+                  padding: EdgeInsets.all(0),
+                  scrollDirection: Axis.vertical,
+                  children: allquestions.map((thisquestion){
+                    // if(thisquestion[3]==1)//means its a heading
+                    // {
+                    //   return Padding(
+                    //     padding: const EdgeInsets.only(bottom: 20, top :20),
+                    //     child: Text(
+                    //       thisquestion[0],
+                    //       textAlign: TextAlign.center,
+                    //       style: GoogleFonts.muli(
+                    //         fontSize: 23,
+                    //       ),
+                    //     )
+                    //   );
+                    // }
+                    // else {
+                      bool _showarrow = true;
+                      if(allquestions.indexOf(thisquestion)==0){
+                        _showarrow=false;
+                      }
+                      // else if(allquestions.indexOf(thisquestion)!=0 && allquestions[allquestions.indexOf(thisquestion)-1][3]==1){
+                      //   _showarrow=false;
+                      // }
+                      return Padding(
+                        padding: (allquestions.indexOf(thisquestion)==allquestions.length-1)?const EdgeInsets.only(bottom: 20):const EdgeInsets.only(bottom: 0),
+                        child: Column(
+                          children: [
+                            (_showarrow==false)?Container():RotatedBox(
+                              quarterTurns: 2,
+                              child: Image.asset(
+                                'assets/images/brokenline.png',
+                                height: 50,
+                              ),
+                            ),
+                            Container(
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                  color: (thisquestion[2] == 2)
+                                      ? Colors.grey[300]
+                                      : Colors.white,
+                                  borderRadius: BorderRadius.all(
+                                      Radius.circular(20)),
+                                  border: Border.all(
+                                    color: (thisquestion[2] == 2) ? Colors
+                                        .grey[300] : (thisquestion[2] == 1)
+                                        ? Color(0xff3dc1d3)
+                                        : Color(0xfffa8231),
+                                    width: 2.5,
+                                  ),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: (thisquestion[2] == 2)
+                                          ? Colors.white
+                                          : Colors.grey[500],
+                                      offset: Offset(1.0, 1.5),
+                                      blurRadius: 5,
+                                    ),
+                                  ]
+                              ),
+                              child: InkWell(
+                                  onTap: (thisquestion[2] == 2) ? null : ()  {
+
+                                    callpage(thisquestion[4]);
+                                  },
+                                  child: ListTile(
+                                    title: Text(
+                                      thisquestion[0],
+                                      style: GoogleFonts.muli(
+                                        // fontFamily: 'FreeSans',
+                                          fontSize: 23,
+                                          color: Colors.grey[800]
+                                      ),
+                                    ),
+                                    trailing: (thisquestion[2] == 2) ?
+                                    Icon(
+                                      Icons.lock,
+                                      color: Colors.grey[800],
+                                    ) :
+                                    (thisquestion[2] == 1) ? Icon(
+                                      Icons.check_circle,
+                                      color: Colors.green,
+                                    ) : Icon(
+                                      // Icons.lightbulb_outline,
+                                      Icons.lock_open,
+                                      color: Color(0xfffa8231),
+                                    ),
+                                  )
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    // }
+                  }).toList(),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, right: 20, bottom: 20),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                      'More chapters and questions are \ncoming in a few days!',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.grey[400],
                         fontSize: 15,
                       )
-                    ),
                   ),
-                )
-              ],
-            ),
-            SizedBox(height: 25),
-            Flexible(
-              child: ListView(
-                padding: EdgeInsets.all(0),
-                scrollDirection: Axis.vertical,
-                children: allquestions.map((thisquestion){
-                  // if(thisquestion[3]==1)//means its a heading
-                  // {
-                  //   return Padding(
-                  //     padding: const EdgeInsets.only(bottom: 20, top :20),
-                  //     child: Text(
-                  //       thisquestion[0],
-                  //       textAlign: TextAlign.center,
-                  //       style: GoogleFonts.muli(
-                  //         fontSize: 23,
-                  //       ),
-                  //     )
-                  //   );
-                  // }
-                  // else {
-                    bool _showarrow = true;
-                    if(allquestions.indexOf(thisquestion)==0){
-                      _showarrow=false;
-                    }
-                    // else if(allquestions.indexOf(thisquestion)!=0 && allquestions[allquestions.indexOf(thisquestion)-1][3]==1){
-                    //   _showarrow=false;
-                    // }
-                    return Padding(
-                      padding: (allquestions.indexOf(thisquestion)==allquestions.length-1)?const EdgeInsets.only(bottom: 20):const EdgeInsets.only(bottom: 0),
-                      child: Column(
-                        children: [
-                          (_showarrow==false)?Container():RotatedBox(
-                            quarterTurns: 2,
-                            child: Image.asset(
-                              'assets/images/brokenline.png',
-                              height: 50,
-                            ),
-                          ),
-                          Container(
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                                color: (thisquestion[2] == 2)
-                                    ? Colors.grey[300]
-                                    : Colors.white,
-                                borderRadius: BorderRadius.all(
-                                    Radius.circular(20)),
-                                border: Border.all(
-                                  color: (thisquestion[2] == 2) ? Colors
-                                      .grey[300] : (thisquestion[2] == 1)
-                                      ? Color(0xff3dc1d3)
-                                      : Color(0xfffa8231),
-                                  width: 2.5,
-                                ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: (thisquestion[2] == 2)
-                                        ? Colors.white
-                                        : Colors.grey[500],
-                                    offset: Offset(1.0, 1.5),
-                                    blurRadius: 5,
-                                  ),
-                                ]
-                            ),
-                            child: InkWell(
-                                onTap: (thisquestion[2] == 2) ? null : ()  {
-
-                                  callpage(thisquestion[4]);
-                                },
-                                child: ListTile(
-                                  title: Text(
-                                    thisquestion[0],
-                                    style: GoogleFonts.muli(
-                                      // fontFamily: 'FreeSans',
-                                        fontSize: 23,
-                                        color: Colors.grey[800]
-                                    ),
-                                  ),
-                                  trailing: (thisquestion[2] == 2) ?
-                                  Icon(
-                                    Icons.lock,
-                                    color: Colors.grey[800],
-                                  ) :
-                                  (thisquestion[2] == 1) ? Icon(
-                                    Icons.check_circle,
-                                    color: Colors.green,
-                                  ) : Icon(
-                                    // Icons.lightbulb_outline,
-                                    Icons.lock_open,
-                                    color: Color(0xfffa8231),
-                                  ),
-                                )
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  // }
-                }).toList(),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20.0, right: 20, bottom: 20),
-              child: Align(
-                alignment: Alignment.center,
-                child: Text(
-                    'More chapters and questions are \ncoming in a few days!',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.grey[700],
-                      fontSize: 15,
-                    )
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
