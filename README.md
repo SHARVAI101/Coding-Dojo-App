@@ -1,6 +1,6 @@
 # coding_dojo_app
 
-A new Flutter application.
+An app that teaches you Java programming.
 
 ## Getting Started
 
